@@ -1,76 +1,55 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<!--Solar System adapted from Alex Giron's base code tutorial on css3 transitions-->
   <head>
-    <meta charset="utf-8" />
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <style>
-      .orbit {
-        stroke : #f03b20;
-        fill : none;
-      }
-      .planet {
-        stroke : #000000;
-        fill : #feb24c;
-      }
-      .sun {
-        stroke : #000000;
-        fill : #ffeda0;
-      }
-    </style>
+    <title>PLANETS</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="styles.css" />
+
+
+        <script src="http://www.google.com/jsapi"></script>
+        <script>
+          // jQuery
+          google.load("jquery", "1");
+        </script>
+        <script type="text/javascript" charset="utf-8">
+          $(function(){
+            $('ul#planets h2').hover(function(){
+              $('ul.solarsystem li.' + $(this).attr('id') ).toggleClass('active');
+            })
+          });
+        </script>
   </head>
   <body>
-    <div id="planets"></div>
-    <script type="text/javascript">
-      var w = 900, h = 700;
-      var t0 = Date.now();
-
-      var planets = [
-        { R: 300, r:  5, speed: 5, phi0: 90},
-        { R: 150, r: 10, speed: 2, phi0: 70},
-        { R: 200, r: 30, speed: 1, phi0: 30},
-        { R: 130, r: 10, speed: 3, phi0: 20},
-        { R: 260, r: 10, speed: 1, phi0: 10},
-        { R: 100, r: 5, speed: 4, phi0: 50}
-      ];
-
-      var svg = d3.select("#planets")
-      .insert("svg")
-        .attr("width", w)
-        .attr("height", h);
-
-      svg.append("circle")
-      .attr("r", 20)
-      .attr("cx", w/2)
-      .attr("cy", h/2)
-      .attr("class", "sun")
-
-      var container = svg.append("g")
-        .attr("transform", "translate(" + w/2 + "," + h/2 + ")")
-
-      container.selectAll("g.planet").data(planets)
-      .enter()
-      .append("g")
-      .attr("class", "planet").each(function(d, i) {
-
-          d3.select(this)
-          .append("circle")
-          .attr("class", "orbit")
-          .attr("r", d.R);
-
-          d3.select(this)
-          .append("circle")
-          .attr("r", d.r)
-          .attr("cx",d.R)
-          .attr("cy", 0)
-          .attr("class", "planet");
-        });
-
-      d3.timer(function() {
-        var delta = (Date.now() - t0);
-        svg.selectAll(".planet")
-        .attr("transform", function(d) {
-          return "rotate(" + d.phi0 + delta * d.speed/200 + ")";
-        });
-      });
-    </script>
-</body>
+  <div class="wrap clearfix">
+    <section class="clearfix">
+      <ul class="solarsystem">
+        <li class="sun"><a href="#sun"><span>Sun</span></a></li>
+        <li class="mercury"><a href="#mercury"><span>Mercury</span></a></li>
+        <li class="venus"><a href="#venus"><span>Venus</span></a></li>
+        <li class="earth"><a href="#earth"><span>Earth<span class="moon"> &amp; Moon</span></span></a></li>
+        <li class="mars"><a href="#mars"><span>Mars</span></a></li>
+        <li class="asteroids_meteorids"><span>Asteroids &amp; Meteorids</span></li>
+        <li class="jupiter"><a href="#jupiter"><span>Jupiter</span></a></li>
+        <li class="saturn"><a href="#saturn"><span>Saturn &amp; <span class="ring">Ring</span></span></a></li>
+        <li class="uranus"><a href="#uranus"><span>Uranus</span></a></li>
+        <li class="neptune"><a href="#neptune"><span>Neptune</span></a></li>
+        <li class="pluto"><a href="#pluto"><span>Pluto</span></a></li>
+      </ul>
+      <ul id="planets">
+          <li><h2 id="sun">Sun</h2></li>
+          <li><h2 id="mercury">Mercury</h2></li>
+          <li><h2 id="venus">Venus</h2></li>
+          <li><h2 id="earth">Earth</h2></li>
+          <li><h2 id="mars">Mars</h2></li>
+          <li><h2 id="jupiter">Jupiter</h2></li>
+          <li><h2 id="saturn">Saturn</h2></li>
+          <li><h2 id="uranus">Uranus</h2></li>
+          <li><h2 id="neptune">Neptune</h2></li>
+          <li><h2 id="pluto">Pluto</h2></li>
+      </ul>
+    </section>
+  </div>
+  </body>
+</html>
